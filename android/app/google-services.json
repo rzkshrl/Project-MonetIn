@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "321340459194",
+    "project_id": "project-monetin",
+    "storage_bucket": "project-monetin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321340459194:android:6df6137dd4dc0df24a5a83",
+        "android_client_info": {
+          "package_name": "com.example.project_monetin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321340459194-g2sbm79gh4vrq09f4kirf36ji04tvp7u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.project_monetin",
+            "certificate_hash": "1be774f3feaa0efc68cc574f2b189c06853bbc05"
+          }
+        },
+        {
+          "client_id": "321340459194-emts5pegvqurlttrkc00cgvop3t0uj0t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSCXdAgzfiWryGCEbp61FyvsRsMAxE0wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321340459194-emts5pegvqurlttrkc00cgvop3t0uj0t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "321340459194-diljdrtounputqhqi8s0p5r9qq4s86fg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.projectMonetin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
