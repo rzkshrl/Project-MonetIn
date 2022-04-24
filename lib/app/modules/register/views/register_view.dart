@@ -10,9 +10,10 @@ import '../controllers/register_controller.dart';
 class RegisterView extends GetView<RegisterController> {
   final bool passwordVisible;
   final bool passwordConfirmVisible;
-  final emailC = TextEditingController();
-  final passC = TextEditingController();
+  final emailC = TextEditingController(text: "testdaftar@gmail.com");
+  final passC = TextEditingController(text: "123456");
   final authC = Get.find<AuthController>();
+  final RegisterController controller = Get.put(RegisterController());
   @override
   RegisterView({
     this.passwordVisible = false,
@@ -51,6 +52,7 @@ class RegisterView extends GetView<RegisterController> {
                       color: colorLight,
                       borderRadius: BorderRadius.circular(14)),
                   child: TextFormField(
+                    controller: emailC,
                     style: TextStyle(color: textGrey),
                     decoration: InputDecoration(
                         prefixIcon: Align(
@@ -76,6 +78,7 @@ class RegisterView extends GetView<RegisterController> {
                   child: TextFormField(
                     style: TextStyle(color: textGrey),
                     obscureText: !passwordVisible,
+                    controller: passC,
                     decoration: InputDecoration(
                         prefixIcon: Align(
                             widthFactor: 1.0,
@@ -141,7 +144,7 @@ class RegisterView extends GetView<RegisterController> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(66), color: primaryBrown),
               child: TextButton(
-                onPressed: () => authC.register(),
+                onPressed: () => authC.register(emailC.text, passC.text),
                 child: Text(
                   'Register',
                   style: heading5.copyWith(color: colorLight),

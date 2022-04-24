@@ -10,8 +10,8 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   final bool passwordVisible;
-  final emailC = TextEditingController();
-  final passC = TextEditingController();
+  final emailC = TextEditingController(text: "test@gmail.com");
+  final passC = TextEditingController(text: "12345678");
   final authC = Get.find<AuthController>();
   final LoginController controller = Get.put(LoginController());
 
