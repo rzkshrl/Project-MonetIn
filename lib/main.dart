@@ -7,6 +7,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:get/get.dart';
 import 'package:project_monetin/app/controller/auth_controller.dart';
 import 'package:project_monetin/app/modules/home/views/home_view.dart';
+import 'package:project_monetin/app/modules/login/views/login_view.dart';
 import 'package:project_monetin/app/utils/loading.dart';
 import 'app/routes/app_pages.dart';
 import 'app/theme/app_themes.dart';
@@ -18,6 +19,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(MyApp());
 }
 
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
             return GetMaterialApp(
               debugShowCheckedModeBanner: false,
               title: "MonetIn",
-              initialRoute: snapshot.data != null ? Routes.HOME : Routes.LOGIN,
+              //initialRoute: snapshot.data != null ? Routes.HOME : Routes.LOGIN,
               getPages: AppPages.routes,
               theme: AppThemes.light,
               darkTheme: AppThemes.dark,
@@ -48,22 +50,31 @@ class MyApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  final authC = Get.put(AuthController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion(
-      value: SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.dark, statusBarColor: background),
-      child: AnimatedSplashScreen(
-        animationDuration: Duration(seconds: 1),
-        splash: 'assets/icons/iconRevert.png',
-        backgroundColor: backgroundDark,
-        nextScreen: HomeView(),
-        splashIconSize: 334,
-        splashTransition: SplashTransition.fadeTransition,
-        pageTransitionType: PageTransitionType.leftToRight,
-      ),
-    );
+    return StreamBuilder<User?>(
+        stream: authC.streamAuthStatus,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            print(snapshot.data);
+            return AnnotatedRegion(
+              value: SystemUiOverlayStyle(
+                  statusBarIconBrightness: Brightness.dark,
+                  statusBarColor: background),
+              child: AnimatedSplashScreen(
+                animationDuration: Duration(seconds: 1),
+                splash: 'assets/icons/iconRevert.png',
+                backgroundColor: backgroundDark,
+                nextScreen: snapshot.data != null ? HomeView() : LoginView(),
+                splashIconSize: 334,
+                splashTransition: SplashTransition.fadeTransition,
+                pageTransitionType: PageTransitionType.leftToRight,
+              ),
+            );
+          }
+          return LoadingView();
+        });
   }
 }

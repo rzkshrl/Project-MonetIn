@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
+import 'package:project_monetin/app/controller/auth_controller.dart';
 
 import '../../../theme/theme.dart';
-import '../../../widgets/primary_button.dart';
 import '../../register/views/register_view.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   final bool passwordVisible;
+  final emailC = TextEditingController();
+  final passC = TextEditingController();
+  final authC = Get.find<AuthController>();
+  final LoginController controller = Get.put(LoginController());
 
   LoginView({
     this.passwordVisible = false,
@@ -49,6 +53,7 @@ class LoginView extends GetView<LoginController> {
                         color: colorLight,
                         borderRadius: BorderRadius.circular(14)),
                     child: TextFormField(
+                      controller: emailC,
                       style: TextStyle(color: textGrey),
                       decoration: InputDecoration(
                           prefixIcon: Align(
@@ -67,34 +72,42 @@ class LoginView extends GetView<LoginController> {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: colorLight,
-                        borderRadius: BorderRadius.circular(14)),
-                    child: TextFormField(
-                      style: TextStyle(color: textGrey),
-                      obscureText: !passwordVisible,
-                      decoration: InputDecoration(
-                          prefixIcon: Align(
-                              widthFactor: 1.0,
-                              heightFactor: 1.0,
-                              child: Icon(
-                                IconlyLight.lock,
-                                color: textGrey,
-                              )),
-                          hintText: 'Password',
-                          hintStyle: heading6.copyWith(color: textGrey),
-                          suffixIcon: IconButton(
-                            color: textGrey,
-                            splashRadius: 1,
-                            icon: Icon(passwordVisible
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined),
-                            onPressed: () {},
-                          ),
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none)),
-                    ),
+                  Column(
+                    children: [
+                      Obx(() => Container(
+                            decoration: BoxDecoration(
+                                color: colorLight,
+                                borderRadius: BorderRadius.circular(14)),
+                            child: TextFormField(
+                              style: TextStyle(color: textGrey),
+                              obscureText: controller.isPasswordHidden.value,
+                              controller: passC,
+                              decoration: InputDecoration(
+                                  prefixIcon: Align(
+                                      widthFactor: 1.0,
+                                      heightFactor: 1.0,
+                                      child: Icon(
+                                        IconlyLight.lock,
+                                        color: textGrey,
+                                      )),
+                                  hintText: 'Password',
+                                  hintStyle: heading6.copyWith(color: textGrey),
+                                  suffixIcon: IconButton(
+                                    color: textGrey,
+                                    splashRadius: 1,
+                                    icon: Icon(controller.isPasswordHidden.value
+                                        ? Icons.visibility_outlined
+                                        : Icons.visibility_off_outlined),
+                                    onPressed: () {
+                                      controller.isPasswordHidden.value =
+                                          !controller.isPasswordHidden.value;
+                                    },
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none)),
+                            ),
+                          ))
+                    ],
                   )
                 ],
               )),
@@ -114,10 +127,19 @@ class LoginView extends GetView<LoginController> {
               SizedBox(
                 height: 24,
               ),
-              CustomPrimaryButton(
-                buttonColor: primaryBrown,
-                textValue: 'Login',
-                textColor: Colors.white,
+              Container(
+                height: 56,
+                width: 128,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(66),
+                    color: primaryBrown),
+                child: TextButton(
+                  onPressed: () => authC.login(emailC.text, passC.text),
+                  child: Text(
+                    'Login',
+                    style: heading5.copyWith(color: colorLight),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 24,

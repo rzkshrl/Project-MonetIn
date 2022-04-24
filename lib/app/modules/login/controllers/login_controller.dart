@@ -4,6 +4,7 @@ class LoginController extends GetxController {
   //TODO: Implement LoginController
 
   final count = 0.obs;
+  var isPasswordHidden = true.obs;
   @override
   void onInit() {
     super.onInit();

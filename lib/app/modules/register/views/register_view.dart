@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 
+import '../../../controller/auth_controller.dart';
 import '../../../theme/theme.dart';
-import '../../../widgets/primary_button.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
   final bool passwordVisible;
   final bool passwordConfirmVisible;
+  final emailC = TextEditingController();
+  final passC = TextEditingController();
+  final authC = Get.find<AuthController>();
   @override
   RegisterView({
     this.passwordVisible = false,
@@ -32,8 +35,8 @@ class RegisterView extends GetView<RegisterController> {
                 ),
                 Image.asset(
                   'assets/images/icon.png',
-                  width: 140,
-                  height: 140,
+                  width: 180,
+                  height: 180,
                 )
               ],
             ),
@@ -43,29 +46,6 @@ class RegisterView extends GetView<RegisterController> {
             Form(
                 child: Column(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: colorLight,
-                      borderRadius: BorderRadius.circular(14)),
-                  child: TextFormField(
-                    style: TextStyle(color: textGrey),
-                    decoration: InputDecoration(
-                        prefixIcon: Align(
-                            widthFactor: 1.0,
-                            heightFactor: 1.0,
-                            child: Icon(
-                              IconlyLight.add_user,
-                              color: textGrey,
-                            )),
-                        hintText: 'Username',
-                        hintStyle: heading6.copyWith(color: textGrey),
-                        border:
-                            OutlineInputBorder(borderSide: BorderSide.none)),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
                 Container(
                   decoration: BoxDecoration(
                       color: colorLight,
@@ -155,10 +135,18 @@ class RegisterView extends GetView<RegisterController> {
             SizedBox(
               height: 30,
             ),
-            CustomPrimaryButton(
-              buttonColor: primaryBrown,
-              textValue: 'Register',
-              textColor: Colors.white,
+            Container(
+              height: 56,
+              width: 128,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(66), color: primaryBrown),
+              child: TextButton(
+                onPressed: () => authC.register(),
+                child: Text(
+                  'Register',
+                  style: heading5.copyWith(color: colorLight),
+                ),
+              ),
             ),
             SizedBox(
               height: 30,
