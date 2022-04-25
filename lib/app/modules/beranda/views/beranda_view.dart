@@ -11,6 +11,8 @@ class BerandaView extends GetView<BerandaController> {
   final String totalmasuk;
   final String totalkeluar;
 
+  final BerandaController controller = Get.put(BerandaController());
+
   Future<void> showPemasukanDialog(BuildContext context) async {
     final GlobalKey<FormState> _namaItemPemasukanKey = GlobalKey<FormState>();
     final GlobalKey<FormState> _jumlahItemPemasukanKey = GlobalKey<FormState>();
@@ -55,7 +57,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                controller: _textEditingController,
+                                controller: controller.namamasukC,
                                 validator: (value) {
                                   return value!.isNotEmpty
                                       ? null
@@ -113,7 +115,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                controller: _textEditingController,
+                                controller: controller.jumlahmasukC,
                                 validator: (value) {
                                   return value!.isNotEmpty
                                       ? null
@@ -171,7 +173,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                controller: _textEditingController,
+                                controller: controller.hargamasukC,
                                 validator: (value) {
                                   return value!.isNotEmpty
                                       ? null
@@ -222,13 +224,7 @@ class BerandaView extends GetView<BerandaController> {
                   style: TextButton.styleFrom(
                       textStyle: TextStyle(fontSize: 10),
                       primary: Colors.white),
-                  onPressed: () {
-                    if (_namaItemPemasukanKey.currentState!.validate() ==
-                            _jumlahItemPemasukanKey.currentState!.validate() &&
-                        _hargaItemPemasukanKey.currentState!.validate()) {
-                      Navigator.pop(context);
-                    }
-                  },
+                  onPressed: () => controller.tambah(controller.namamasukC.text , controller.jumlahmasukC.text, controller.hargamasukC.text),
                   child: Text('SIMPAN'),
                 )
               ],
@@ -282,7 +278,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                controller: _textEditingController,
+                                controller: controller.namakeluarC,
                                 validator: (value) {
                                   return value!.isNotEmpty
                                       ? null
@@ -339,7 +335,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                controller: _textEditingController,
+                                controller: controller.jumlahkeluarC,
                                 validator: (value) {
                                   return value!.isNotEmpty
                                       ? null
@@ -396,7 +392,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                controller: _textEditingController,
+                                controller: controller.hargakeluarC,
                                 validator: (value) {
                                   return value!.isNotEmpty
                                       ? null
@@ -447,17 +443,7 @@ class BerandaView extends GetView<BerandaController> {
                   style: TextButton.styleFrom(
                       textStyle: TextStyle(fontSize: 10),
                       primary: Colors.white),
-                  onPressed: () {
-                    if (_namaItemPengeluaranKey.currentState!.validate()) {
-                      Navigator.pop(context);
-                    } else if (_jumlahItemPengeluaranKey.currentState!
-                        .validate()) {
-                      Navigator.pop(context);
-                    } else if (_hargaItemPengeluaranKey.currentState!
-                        .validate()) {
-                      Navigator.pop(context);
-                    }
-                  },
+                  onPressed: () => controller.tambah(controller.namakeluarC.text , controller.jumlahkeluarC.text, controller.hargakeluarC.text),
                   child: Text('SIMPAN'),
                 )
               ],
@@ -509,7 +495,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                controller: _textEditingController,
+                                //controller: controller,
                                 validator: (value) {
                                   return value!.isNotEmpty
                                       ? null
@@ -566,7 +552,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                controller: _textEditingController,
+                                //controller: controller.totalhutangC,
                                 validator: (value) {
                                   return value!.isNotEmpty
                                       ? null
@@ -623,6 +609,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
+                                //controller: controller.keteranganhutangC,
                                 style:
                                     regular16pt.copyWith(color: Colors.white),
                                 decoration: InputDecoration(
@@ -668,15 +655,7 @@ class BerandaView extends GetView<BerandaController> {
                   style: TextButton.styleFrom(
                       textStyle: TextStyle(fontSize: 10),
                       primary: Colors.white),
-                  onPressed: () {
-                    if (_namaItemHutangKey.currentState!.validate()) {
-                      Navigator.pop(context);
-                    } else if (_jumlahItemHutangKey.currentState!.validate()) {
-                      Navigator.pop(context);
-                    } else if (_hargaItemHutangKey.currentState!.validate()) {
-                      Navigator.pop(context);
-                    }
-                  },
+                  onPressed: () => controller,
                   child: Text('SIMPAN'),
                 )
               ],
