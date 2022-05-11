@@ -67,7 +67,10 @@ class SplashScreen extends StatelessWidget {
                 animationDuration: Duration(seconds: 1),
                 splash: 'assets/icons/iconRevert.png',
                 backgroundColor: backgroundDark,
-                nextScreen: snapshot.data != null ? HomeView() : LoginView(),
+                nextScreen: snapshot.data != null &&
+                        snapshot.data!.emailVerified == true
+                    ? HomeView()
+                    : LoginView(),
                 splashIconSize: 334,
                 splashTransition: SplashTransition.fadeTransition,
                 pageTransitionType: PageTransitionType.leftToRight,

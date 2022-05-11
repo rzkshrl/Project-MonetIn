@@ -9,6 +9,7 @@ abstract class Routes {
   static const BERANDA = _Paths.BERANDA;
   static const SETELAN = _Paths.SETELAN;
   static const REGISTER = _Paths.REGISTER;
+  static const RESET_PASSWORD = _Paths.RESET_PASSWORD;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const BERANDA = '/beranda';
   static const SETELAN = '/setelan';
   static const REGISTER = '/register';
+  static const RESET_PASSWORD = '/reset-password';
 }

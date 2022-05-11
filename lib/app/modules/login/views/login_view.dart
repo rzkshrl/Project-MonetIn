@@ -3,21 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:project_monetin/app/controller/auth_controller.dart';
+import 'package:project_monetin/app/modules/reset_password/views/reset_password_view.dart';
 
 import '../../../theme/theme.dart';
 import '../../register/views/register_view.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  final bool passwordVisible;
-  final emailC = TextEditingController(text: "test@gmail.com");
-  final passC = TextEditingController(text: "12345678");
+  final emailC = TextEditingController();
+  final passC = TextEditingController();
   final authC = Get.find<AuthController>();
   final LoginController controller = Get.put(LoginController());
-
-  LoginView({
-    this.passwordVisible = false,
-  });
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +59,7 @@ class LoginView extends GetView<LoginController> {
                                 IconlyLight.user,
                                 color: textGrey,
                               )),
-                          hintText: 'Username',
+                          hintText: 'Email',
                           hintStyle: heading6.copyWith(color: textGrey),
                           border:
                               OutlineInputBorder(borderSide: BorderSide.none)),
@@ -116,8 +112,10 @@ class LoginView extends GetView<LoginController> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => RegisterView()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ResetPasswordView()));
                 },
                 child: Text(
                   'Lupa Sandi?',

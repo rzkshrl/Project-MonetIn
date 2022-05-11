@@ -8,17 +8,11 @@ import '../../../theme/theme.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
-  final bool passwordVisible;
-  final bool passwordConfirmVisible;
-  final emailC = TextEditingController(text: "testdaftar@gmail.com");
-  final passC = TextEditingController(text: "123456");
+  final emailC = TextEditingController();
+  final passC = TextEditingController();
   final authC = Get.find<AuthController>();
   final RegisterController controller = Get.put(RegisterController());
   @override
-  RegisterView({
-    this.passwordVisible = false,
-    this.passwordConfirmVisible = false,
-  });
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background,
@@ -71,68 +65,85 @@ class RegisterView extends GetView<RegisterController> {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: colorLight,
-                      borderRadius: BorderRadius.circular(14)),
-                  child: TextFormField(
-                    style: TextStyle(color: textGrey),
-                    obscureText: !passwordVisible,
-                    controller: passC,
-                    decoration: InputDecoration(
-                        prefixIcon: Align(
-                            widthFactor: 1.0,
-                            heightFactor: 1.0,
-                            child: Icon(
-                              IconlyLight.lock,
+                Column(children: [
+                  Obx(
+                    () => Container(
+                      decoration: BoxDecoration(
+                          color: colorLight,
+                          borderRadius: BorderRadius.circular(14)),
+                      child: TextFormField(
+                        style: TextStyle(color: textGrey),
+                        obscureText: controller.isPasswordHidden.value,
+                        controller: passC,
+                        decoration: InputDecoration(
+                            prefixIcon: Align(
+                                widthFactor: 1.0,
+                                heightFactor: 1.0,
+                                child: Icon(
+                                  IconlyLight.lock,
+                                  color: textGrey,
+                                )),
+                            hintText: 'Password',
+                            hintStyle: heading6.copyWith(color: textGrey),
+                            suffixIcon: IconButton(
                               color: textGrey,
-                            )),
-                        hintText: 'Password',
-                        hintStyle: heading6.copyWith(color: textGrey),
-                        suffixIcon: IconButton(
-                          color: textGrey,
-                          splashRadius: 1,
-                          icon: Icon(passwordVisible
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off_outlined),
-                          onPressed: () {},
-                        ),
-                        border:
-                            OutlineInputBorder(borderSide: BorderSide.none)),
-                  ),
-                ),
+                              splashRadius: 1,
+                              icon: Icon(controller.isPasswordHidden.value
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined),
+                              onPressed: () {
+                                controller.isPasswordHidden.value =
+                                    !controller.isPasswordHidden.value;
+                              },
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide.none)),
+                      ),
+                    ),
+                  )
+                ]),
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: colorLight,
-                      borderRadius: BorderRadius.circular(14)),
-                  child: TextFormField(
-                    style: TextStyle(color: textGrey),
-                    obscureText: !passwordConfirmVisible,
-                    decoration: InputDecoration(
-                        prefixIcon: Align(
-                            widthFactor: 1.0,
-                            heightFactor: 1.0,
-                            child: Icon(
-                              IconlyLight.lock,
-                              color: textGrey,
-                            )),
-                        hintText: 'Password Confirmation',
-                        hintStyle: heading6.copyWith(color: textGrey),
-                        suffixIcon: IconButton(
-                          color: textGrey,
-                          splashRadius: 1,
-                          icon: Icon(passwordConfirmVisible
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off_outlined),
-                          onPressed: () {},
-                        ),
-                        border:
-                            OutlineInputBorder(borderSide: BorderSide.none)),
-                  ),
-                )
+                Column(
+                  children: [
+                    Obx(() => Container(
+                          decoration: BoxDecoration(
+                              color: colorLight,
+                              borderRadius: BorderRadius.circular(14)),
+                          child: TextFormField(
+                            style: TextStyle(color: textGrey),
+                            obscureText:
+                                controller.isPasswordHiddenConfirm.value,
+                            decoration: InputDecoration(
+                                prefixIcon: Align(
+                                    widthFactor: 1.0,
+                                    heightFactor: 1.0,
+                                    child: Icon(
+                                      IconlyLight.lock,
+                                      color: textGrey,
+                                    )),
+                                hintText: 'Password Confirmation',
+                                hintStyle: heading6.copyWith(color: textGrey),
+                                suffixIcon: IconButton(
+                                  color: textGrey,
+                                  splashRadius: 1,
+                                  icon: Icon(
+                                      controller.isPasswordHiddenConfirm.value
+                                          ? Icons.visibility_outlined
+                                          : Icons.visibility_off_outlined),
+                                  onPressed: () {
+                                    controller.isPasswordHiddenConfirm.value =
+                                        !controller
+                                            .isPasswordHiddenConfirm.value;
+                                  },
+                                ),
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none)),
+                          ),
+                        ))
+                  ],
+                ),
               ],
             )),
             SizedBox(
@@ -144,7 +155,9 @@ class RegisterView extends GetView<RegisterController> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(66), color: primaryBrown),
               child: TextButton(
-                onPressed: () => authC.register(emailC.text, passC.text),
+                onPressed: () {
+                  authC.register(emailC.text, passC.text);
+                },
                 child: Text(
                   'Register',
                   style: heading5.copyWith(color: colorLight),
