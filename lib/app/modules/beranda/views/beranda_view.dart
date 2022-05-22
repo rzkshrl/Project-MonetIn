@@ -731,6 +731,7 @@ class BerandaView extends GetView<BerandaController> {
       backgroundColor: background,
       body: Stack(
         children: [
+          //title
           Positioned(
             top: -23,
             left: 20,
