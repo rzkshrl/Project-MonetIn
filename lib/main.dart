@@ -36,12 +36,12 @@ class MyApp extends StatelessWidget {
             return GetMaterialApp(
               debugShowCheckedModeBanner: false,
               title: "MonetIn",
-              //initialRoute: snapshot.data != null ? Routes.HOME : Routes.LOGIN,
+              initialRoute: snapshot.data != null ? Routes.HOME : Routes.LOGIN,
               getPages: AppPages.routes,
               theme: AppThemes.light,
               darkTheme: AppThemes.dark,
               themeMode: ThemeMode.system,
-              home: SplashScreen(),
+              home: HomeView(),
             );
           }
           return LoadingView();

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
+import 'package:project_monetin/app/modules/hutang/views/hutang_view.dart';
+import 'package:project_monetin/app/modules/pemasukan/views/pemasukan_view.dart';
+import 'package:project_monetin/app/modules/pengeluaran/views/pengeluaran_view.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/custom_icons_icons.dart';
 import '../controllers/beranda_controller.dart';
@@ -224,7 +227,11 @@ class BerandaView extends GetView<BerandaController> {
                   style: TextButton.styleFrom(
                       textStyle: TextStyle(fontSize: 10),
                       primary: Colors.white),
-                  onPressed: () => controller.tambah(controller.namamasukC.text , controller.jumlahmasukC.text, controller.hargamasukC.text),
+                  onPressed: () => controller.tambahPemasukan(
+                    controller.namamasukC.text,
+                    controller.jumlahmasukC.text,
+                    controller.hargamasukC.text,
+                  ),
                   child: Text('SIMPAN'),
                 )
               ],
@@ -443,7 +450,11 @@ class BerandaView extends GetView<BerandaController> {
                   style: TextButton.styleFrom(
                       textStyle: TextStyle(fontSize: 10),
                       primary: Colors.white),
-                  onPressed: () => controller.tambah(controller.namakeluarC.text , controller.jumlahkeluarC.text, controller.hargakeluarC.text),
+                  onPressed: () => controller.tambahPengeluaran(
+                    controller.namakeluarC.text,
+                    controller.jumlahkeluarC.text,
+                    controller.hargakeluarC.text,
+                  ),
                   child: Text('SIMPAN'),
                 )
               ],
@@ -495,7 +506,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                //controller: controller,
+                                controller: controller.namaHutangC,
                                 validator: (value) {
                                   return value!.isNotEmpty
                                       ? null
@@ -552,7 +563,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                //controller: controller.totalhutangC,
+                                controller: controller.totalHutangC,
                                 validator: (value) {
                                   return value!.isNotEmpty
                                       ? null
@@ -609,7 +620,7 @@ class BerandaView extends GetView<BerandaController> {
                                     currentFocus.unfocus();
                                   }
                                 },
-                                //controller: controller.keteranganhutangC,
+                                controller: controller.ketHutangC,
                                 style:
                                     regular16pt.copyWith(color: Colors.white),
                                 decoration: InputDecoration(
@@ -655,7 +666,11 @@ class BerandaView extends GetView<BerandaController> {
                   style: TextButton.styleFrom(
                       textStyle: TextStyle(fontSize: 10),
                       primary: Colors.white),
-                  onPressed: () => controller,
+                  onPressed: () => controller.tambahHutang(
+                    controller.namaHutangC.text,
+                    controller.totalHutangC.text,
+                    controller.ketHutangC.text,
+                  ),
                   child: Text('SIMPAN'),
                 )
               ],
@@ -679,6 +694,7 @@ class BerandaView extends GetView<BerandaController> {
         animatedIcon: AnimatedIcons.menu_close,
         backgroundColor: primaryBrownRed,
         spacing: 10,
+        //floatingactionbutton
         children: [
           SpeedDialChild(
               child: Icon(
@@ -732,6 +748,7 @@ class BerandaView extends GetView<BerandaController> {
               SizedBox(
                 height: 70,
               ),
+              //Pemasukan
               Container(
                 height: 180,
                 width: MediaQuery.of(context).size.width,
@@ -759,7 +776,13 @@ class BerandaView extends GetView<BerandaController> {
                                 child: Material(
                                   color: Colors.transparent,
                                   child: IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PemasukanView()));
+                                    },
                                     icon: Icon(
                                       Icons.more_vert_rounded,
                                       color: Colors.white,
@@ -840,6 +863,7 @@ class BerandaView extends GetView<BerandaController> {
               SizedBox(
                 height: 15,
               ),
+              //Pengeluaran
               Container(
                 height: 180,
                 width: MediaQuery.of(context).size.width,
@@ -869,7 +893,13 @@ class BerandaView extends GetView<BerandaController> {
                                 child: Material(
                                   color: Colors.transparent,
                                   child: IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PengeluaranView()));
+                                    },
                                     icon: Icon(
                                       Icons.more_vert_rounded,
                                       color: Colors.white,
@@ -950,6 +980,7 @@ class BerandaView extends GetView<BerandaController> {
               SizedBox(
                 height: 15,
               ),
+              //Hutang
               Container(
                 height: 116,
                 width: MediaQuery.of(context).size.width,
@@ -977,7 +1008,13 @@ class BerandaView extends GetView<BerandaController> {
                                 child: Material(
                                   color: Colors.transparent,
                                   child: IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HutangView()));
+                                    },
                                     icon: Icon(
                                       Icons.more_vert_rounded,
                                       color: Colors.white,

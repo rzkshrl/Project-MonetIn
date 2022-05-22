@@ -10,6 +10,9 @@ abstract class Routes {
   static const SETELAN = _Paths.SETELAN;
   static const REGISTER = _Paths.REGISTER;
   static const RESET_PASSWORD = _Paths.RESET_PASSWORD;
+  static const PEMASUKAN = _Paths.PEMASUKAN;
+  static const PENGELUARAN = _Paths.PENGELUARAN;
+  static const HUTANG = _Paths.HUTANG;
 }
 
 abstract class _Paths {
@@ -21,4 +24,7 @@ abstract class _Paths {
   static const SETELAN = '/setelan';
   static const REGISTER = '/register';
   static const RESET_PASSWORD = '/reset-password';
+  static const PEMASUKAN = '/pemasukan';
+  static const PENGELUARAN = '/pengeluaran';
+  static const HUTANG = '/hutang';
 }
