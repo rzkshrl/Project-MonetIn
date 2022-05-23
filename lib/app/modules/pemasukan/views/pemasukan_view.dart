@@ -57,7 +57,7 @@ class PemasukanView extends GetView<PemasukanController> {
                       return Column(
                         children: [
                           SizedBox(
-                            height: 10,
+                            height: 8,
                           ),
                           Container(
                             height: 160,
