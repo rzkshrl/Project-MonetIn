@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:project_monetin/app/theme/theme.dart';
@@ -12,201 +13,228 @@ import '../controllers/pengeluaran_controller.dart';
 class PengeluaranView extends GetView<PengeluaranController> {
   final PengeluaranController controller = Get.put(PengeluaranController());
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: background,
-      body: StreamBuilder<QuerySnapshot<Object?>>(
-          stream: controller.streamDataPengeluaran(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.active) {
-              var listAllDocs = snapshot.data!.docs;
-              // return ListView.builder(
-              //   itemCount: listAllDocs.length,
-              //   itemBuilder: (context, index) => ListTile(
-              //     title: Text(
-              //         "Nama Item ${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}"),
-              //     subtitle: Text(
-              //         "QTY ${(listAllDocs[index].data() as Map<String, dynamic>)["jumlah"]}"),
-              //   ),
-              // );
-              return CustomScrollView(
-                slivers: [
-                  CustomAppBar(
-                    title: "Detail Transaksi",
-                    action: Row(
-                      children: [
-                        ClipOval(
-                          child: Material(
-                            color: Colors.transparent,
-                            child: IconButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              icon: Icon(
-                                Icons.exit_to_app_rounded,
-                                color: primaryBrown.withOpacity(0.50),
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.dark, statusBarColor: background),
+      child: Scaffold(
+        backgroundColor: background,
+        body: StreamBuilder<QuerySnapshot<Object?>>(
+            stream: controller.streamDataPengeluaran(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.active) {
+                var listAllDocs = snapshot.data!.docs;
+                // return ListView.builder(
+                //   itemCount: listAllDocs.length,
+                //   itemBuilder: (context, index) => ListTile(
+                //     title: Text(
+                //         "Nama Item ${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}"),
+                //     subtitle: Text(
+                //         "QTY ${(listAllDocs[index].data() as Map<String, dynamic>)["jumlah"]}"),
+                //   ),
+                // );
+                return CustomScrollView(
+                  slivers: [
+                    CustomAppBar(
+                      title: "Detail Transaksi",
+                      action: Row(
+                        children: [
+                          ClipOval(
+                            child: Material(
+                              color: Colors.transparent,
+                              child: IconButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                icon: Icon(
+                                  Icons.exit_to_app_rounded,
+                                  color: primaryBrown.withOpacity(0.50),
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                        (BuildContext context, int index) {
-                      return Column(
-                        children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 160,
-                            width: MediaQuery.of(context).size.width,
-                            color: Colors.transparent,
-                            child: new Stack(
-                              children: [
-                                Positioned(
-                                  bottom: 0,
-                                  left: 35,
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        height: 160,
-                                        width: 344,
-                                        decoration: BoxDecoration(
-                                          color: generateRandomColor(),
-                                          borderRadius:
-                                              BorderRadius.circular(25),
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Container(
+                              height: 160,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.transparent,
+                              child: new Stack(
+                                children: [
+                                  Positioned(
+                                    bottom: 0,
+                                    left: 40,
+                                    right: 40,
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 160,
+                                          width: 344,
+                                          decoration: BoxDecoration(
+                                            color: generateRandomColor(),
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                          ),
                                         ),
-                                      ),
-                                      Positioned(
-                                          top: 13,
-                                          left: 240,
-                                          child: ClipOval(
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              child: IconButton(
-                                                onPressed: () {},
-                                                icon: Icon(
-                                                  Icons.edit,
-                                                  color: Colors.white,
+                                        Positioned(
+                                            top: 13,
+                                            left: 240,
+                                            child: ClipOval(
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: IconButton(
+                                                  onPressed: () {},
+                                                  icon: Icon(
+                                                    Icons.edit,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          )),
-                                      Positioned(
-                                          top: 13,
-                                          left: 280,
-                                          child: ClipOval(
-                                            child: Material(
-                                              color: Colors.transparent,
-                                              child: IconButton(
-                                                onPressed: () {},
-                                                icon: Icon(
-                                                  Icons.delete,
-                                                  color: Colors.white,
+                                            )),
+                                        Positioned(
+                                            top: 13,
+                                            left: 280,
+                                            child: ClipOval(
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: IconButton(
+                                                  onPressed: () {},
+                                                  icon: Icon(
+                                                    Icons.delete,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          )),
-                                      Positioned(
-                                        top: 25,
-                                        left: 25,
-                                        child: Stack(children: [
-                                          Text(
-                                            'Transaksi Masuk',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          Text(
-                                            '\n\nItem \n       ${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          )
-                                        ]),
-                                      ),
-                                      Positioned(
-                                          top: 120,
+                                            )),
+                                        Positioned(
+                                          top: 25,
                                           left: 25,
-                                          child: Text(
-                                            "Total",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
+                                          child: Stack(children: [
+                                            Text(
+                                              'Transaksi Keluar',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
-                                          )),
-                                      Positioned(
-                                        top: 89,
-                                        left: 220,
-                                        right: 0,
-                                        child: Stack(children: [
-                                          Text(
-                                            'QTY:',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          Positioned(
-                                              left: 20,
-                                              right: 0,
-                                              child: Text(
-                                                "${(listAllDocs[index].data() as Map<String, dynamic>)["jumlah"]}",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                                textAlign: TextAlign.center,
-                                              )),
-                                        ]),
-                                      ),
-                                      Positioned(
-                                          top: 99,
-                                          left: 200,
+                                          ]),
+                                        ),
+                                        Positioned(
+                                          top: 38,
+                                          left: 25,
+                                          child: Stack(children: [
+                                            Text(
+                                              '\nItem',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            )
+                                          ]),
+                                        ),
+                                        Positioned(
+                                          top: 70,
+                                          left: 25,
+                                          child: Stack(children: [
+                                            Text(
+                                              '\n       ${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            )
+                                          ]),
+                                        ),
+                                        Positioned(
+                                            top: 120,
+                                            left: 25,
+                                            child: Text(
+                                              "Total",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            )),
+                                        Positioned(
+                                          top: 89,
+                                          left: 220,
                                           right: 0,
-                                          child: Stack(
-                                            children: [
-                                              Text('\nRp.',
+                                          child: Stack(children: [
+                                            Text(
+                                              'QTY:',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            Positioned(
+                                                left: 20,
+                                                right: 0,
+                                                child: Text(
+                                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["jumlah"]}",
                                                   style: TextStyle(
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.w400,
                                                   ),
-                                                  textAlign: TextAlign.left),
-                                              Positioned(
-                                                  top: 20,
-                                                  left: 30,
-                                                  right: 0,
-                                                  child: Text(
-                                                    "${(listAllDocs[index].data() as Map<String, dynamic>)["harga"]}",
+                                                  textAlign: TextAlign.center,
+                                                )),
+                                          ]),
+                                        ),
+                                        Positioned(
+                                            top: 99,
+                                            left: 200,
+                                            right: 0,
+                                            child: Stack(
+                                              children: [
+                                                Text('\nRp.',
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       fontWeight:
                                                           FontWeight.w400,
                                                     ),
-                                                    textAlign: TextAlign.center,
-                                                  )),
-                                            ],
-                                          ))
-                                    ],
+                                                    textAlign: TextAlign.left),
+                                                Positioned(
+                                                    top: 20,
+                                                    left: 30,
+                                                    right: 0,
+                                                    child: Text(
+                                                      "${(listAllDocs[index].data() as Map<String, dynamic>)["harga"]}",
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )),
+                                              ],
+                                            ))
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      );
-                    }, childCount: snapshot.data!.size),
-                  )
-                ],
-              );
-            }
-            return Center(child: CircularProgressIndicator());
-          }),
+                                ],
+                              ),
+                            )
+                          ],
+                        );
+                      }, childCount: snapshot.data!.size),
+                    )
+                  ],
+                );
+              }
+              return Center(child: CircularProgressIndicator());
+            }),
+      ),
     );
   }
 }
@@ -218,6 +246,9 @@ Color generateRandomColor() {
     primaryPurple,
     primaryGreen,
     primaryBrownRed,
+    primaryGreenCyan,
+    primaryBlueCyan,
+    primaryBrownLight
   ];
   Random random = Random();
   return predefinedColors[random.nextInt(predefinedColors.length)];
@@ -246,7 +277,7 @@ class CustomAppBar extends StatelessWidget {
             children: [
               FlexibleSpaceBar(
                   titlePadding:
-                      EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+                      EdgeInsets.symmetric(horizontal: 18, vertical: 50),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
