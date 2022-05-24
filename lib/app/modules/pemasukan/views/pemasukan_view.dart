@@ -58,7 +58,7 @@ class PemasukanView extends GetView<PemasukanController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: 10,
+                            height: 8,
                           ),
                           Container(
                             height: 160,
