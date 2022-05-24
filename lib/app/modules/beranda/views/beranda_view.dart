@@ -733,7 +733,7 @@ class BerandaView extends GetView<BerandaController> {
         children: [
           //title
           Positioned(
-            top: -23,
+            top: -10,
             left: 20,
             child: Text(
               'Beranda',
@@ -751,7 +751,7 @@ class BerandaView extends GetView<BerandaController> {
               ),
               //Pemasukan
               Container(
-                height: 180,
+                height: 170,
                 width: MediaQuery.of(context).size.width,
                 color: Colors.transparent,
                 child: new Stack(
@@ -759,11 +759,12 @@ class BerandaView extends GetView<BerandaController> {
                     Positioned(
                       top: 0,
                       bottom: 0,
-                      left: 35,
+                      left: 40,
+                      right: 40,
                       child: Stack(
                         children: [
                           Container(
-                            height: 180,
+                            height: 170,
                             width: 344,
                             decoration: BoxDecoration(
                               color: primaryBrown,
@@ -812,8 +813,8 @@ class BerandaView extends GetView<BerandaController> {
                             ]),
                           ),
                           Positioned(
-                            top: 109,
-                            left: 220,
+                            top: 95,
+                            left: 210,
                             right: 0,
                             child: Stack(children: [
                               Text(
@@ -866,7 +867,7 @@ class BerandaView extends GetView<BerandaController> {
               ),
               //Pengeluaran
               Container(
-                height: 180,
+                height: 170,
                 width: MediaQuery.of(context).size.width,
                 color: Colors.transparent,
                 child: new Stack(
@@ -876,11 +877,12 @@ class BerandaView extends GetView<BerandaController> {
                     Positioned(
                       top: 0,
                       bottom: 0,
-                      left: 35,
+                      left: 40,
+                      right: 40,
                       child: Stack(
                         children: [
                           Container(
-                            height: 180,
+                            height: 170,
                             width: 344,
                             decoration: BoxDecoration(
                               color: primaryPurple,
@@ -929,8 +931,8 @@ class BerandaView extends GetView<BerandaController> {
                             ]),
                           ),
                           Positioned(
-                            top: 109,
-                            left: 220,
+                            top: 95,
+                            left: 210,
                             right: 0,
                             child: Stack(children: [
                               Text(
@@ -983,7 +985,7 @@ class BerandaView extends GetView<BerandaController> {
               ),
               //Hutang
               Container(
-                height: 116,
+                height: 105,
                 width: MediaQuery.of(context).size.width,
                 color: Colors.transparent,
                 child: new Stack(
@@ -991,7 +993,8 @@ class BerandaView extends GetView<BerandaController> {
                     Positioned(
                       top: 0,
                       bottom: 0,
-                      left: 35,
+                      left: 40,
+                      right: 40,
                       child: Stack(
                         children: [
                           Container(

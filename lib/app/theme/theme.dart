@@ -14,6 +14,9 @@ Color primaryBrown = HexColor('#866374');
 Color primaryPurple = HexColor('#816386');
 Color primaryGreen = HexColor('#638679');
 Color primaryBrownRed = HexColor('#B7889E');
+Color primaryGreenCyan = HexColor('#638684');
+Color primaryBlueCyan = HexColor('#646386');
+Color primaryBrownLight = HexColor('#AF6E53');
 Color error = HexColor('#FF0000');
 
 TextStyle heading2 = TextStyle(

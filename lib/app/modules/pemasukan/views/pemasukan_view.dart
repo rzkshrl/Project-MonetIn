@@ -55,6 +55,7 @@ class PemasukanView extends GetView<PemasukanController> {
                     delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
                       return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
                             height: 10,
@@ -67,7 +68,8 @@ class PemasukanView extends GetView<PemasukanController> {
                               children: [
                                 Positioned(
                                   bottom: 0,
-                                  left: 35,
+                                  left: 40,
+                                  right: 40,
                                   child: Stack(
                                     children: [
                                       Container(
@@ -120,8 +122,27 @@ class PemasukanView extends GetView<PemasukanController> {
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
+                                        ]),
+                                      ),
+                                      Positioned(
+                                        top: 38,
+                                        left: 25,
+                                        child: Stack(children: [
                                           Text(
-                                            '\n\nItem \n       ${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}',
+                                            '\nItem',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          )
+                                        ]),
+                                      ),
+                                      Positioned(
+                                        top: 70,
+                                        left: 25,
+                                        child: Stack(children: [
+                                          Text(
+                                            '\n       ${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
@@ -218,6 +239,9 @@ Color generateRandomColor() {
     primaryPurple,
     primaryGreen,
     primaryBrownRed,
+    primaryGreenCyan,
+    primaryBlueCyan,
+    primaryBrownLight
   ];
   Random random = Random();
   return predefinedColors[random.nextInt(predefinedColors.length)];
@@ -246,7 +270,7 @@ class CustomAppBar extends StatelessWidget {
             children: [
               FlexibleSpaceBar(
                   titlePadding:
-                      EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+                      EdgeInsets.symmetric(horizontal: 18, vertical: 50),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
