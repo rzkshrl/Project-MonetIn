@@ -13,6 +13,9 @@ abstract class Routes {
   static const PEMASUKAN = _Paths.PEMASUKAN;
   static const PENGELUARAN = _Paths.PENGELUARAN;
   static const HUTANG = _Paths.HUTANG;
+  static const UPDATEPEMASUKAN = _Paths.UPDATEPEMASUKAN;
+  static const UPDATEPENGELUARAN = _Paths.UPDATEPENGELUARAN;
+  static const UPDATEHUTANG = _Paths.UPDATEHUTANG;
 }
 
 abstract class _Paths {
@@ -27,4 +30,7 @@ abstract class _Paths {
   static const PEMASUKAN = '/pemasukan';
   static const PENGELUARAN = '/pengeluaran';
   static const HUTANG = '/hutang';
+  static const UPDATEPEMASUKAN = '/updatepemasukan';
+  static const UPDATEPENGELUARAN = '/updatepengeluaran';
+  static const UPDATEHUTANG = '/updatehutang';
 }

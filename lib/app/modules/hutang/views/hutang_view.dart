@@ -55,23 +55,25 @@ class HutangView extends GetView<HutangController> {
                     delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
                       return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: 10,
+                            height: 8,
                           ),
                           Container(
-                            height: 160,
+                            height: 170,
                             width: MediaQuery.of(context).size.width,
                             color: Colors.transparent,
                             child: new Stack(
                               children: [
                                 Positioned(
                                   bottom: 0,
-                                  left: 35,
+                                  left: 40,
+                                  right: 40,
                                   child: Stack(
                                     children: [
                                       Container(
-                                        height: 160,
+                                        height: 170,
                                         width: 344,
                                         decoration: BoxDecoration(
                                           color: generateRandomColor(),
@@ -114,14 +116,20 @@ class HutangView extends GetView<HutangController> {
                                         left: 25,
                                         child: Stack(children: [
                                           Text(
-                                            'Transaksi Masuk',
+                                            'Hutang',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
+                                        ]),
+                                      ),
+                                      Positioned(
+                                        top: 45,
+                                        left: 25,
+                                        child: Stack(children: [
                                           Text(
-                                            '\n\nItem \n       ${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}',
+                                            '\nItem :         ${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
@@ -130,22 +138,22 @@ class HutangView extends GetView<HutangController> {
                                         ]),
                                       ),
                                       Positioned(
-                                          top: 120,
+                                          top: 125,
                                           left: 25,
                                           child: Text(
-                                            "Total",
+                                            "Keterangan Hutang :",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
                                             ),
                                           )),
                                       Positioned(
-                                        top: 89,
-                                        left: 220,
+                                        top: 94,
+                                        left: 25,
                                         right: 0,
                                         child: Stack(children: [
                                           Text(
-                                            'QTY:',
+                                            'Total Hutang:',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w400,
@@ -153,10 +161,10 @@ class HutangView extends GetView<HutangController> {
                                             textAlign: TextAlign.center,
                                           ),
                                           Positioned(
-                                              left: 20,
+                                              left: 120,
                                               right: 0,
                                               child: Text(
-                                                "${(listAllDocs[index].data() as Map<String, dynamic>)["jumlah"]}",
+                                                "${(listAllDocs[index].data() as Map<String, dynamic>)["total"]}",
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.w400,
@@ -166,32 +174,30 @@ class HutangView extends GetView<HutangController> {
                                         ]),
                                       ),
                                       Positioned(
-                                          top: 99,
+                                          top: 96,
                                           left: 200,
                                           right: 0,
                                           child: Stack(
                                             children: [
-                                              Text('\nRp.',
+                                              Text('Rp.',
                                                   style: TextStyle(
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.w400,
                                                   ),
                                                   textAlign: TextAlign.left),
-                                              Positioned(
-                                                  top: 20,
-                                                  left: 30,
-                                                  right: 0,
-                                                  child: Text(
-                                                    "${(listAllDocs[index].data() as Map<String, dynamic>)["harga"]}",
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  )),
                                             ],
-                                          ))
+                                          )),
+                                      Positioned(
+                                          top: 125,
+                                          left: 180,
+                                          child: Text(
+                                            "      ${(listAllDocs[index].data() as Map<String, dynamic>)["keterangan"]}",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          )),
                                     ],
                                   ),
                                 ),
@@ -218,6 +224,9 @@ Color generateRandomColor() {
     primaryPurple,
     primaryGreen,
     primaryBrownRed,
+    primaryGreenCyan,
+    primaryBlueCyan,
+    primaryBrownLight
   ];
   Random random = Random();
   return predefinedColors[random.nextInt(predefinedColors.length)];
@@ -246,7 +255,7 @@ class CustomAppBar extends StatelessWidget {
             children: [
               FlexibleSpaceBar(
                   titlePadding:
-                      EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+                      EdgeInsets.symmetric(horizontal: 18, vertical: 50),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [

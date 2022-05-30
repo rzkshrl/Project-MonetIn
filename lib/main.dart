@@ -54,35 +54,35 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class SplashScreen extends StatelessWidget {
-  final authC = Get.put(AuthController(), permanent: true);
+// class SplashScreen extends StatelessWidget {
+//   final authC = Get.put(AuthController(), permanent: true);
 
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-        stream: authC.streamAuthStatus,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.active) {
-            print(snapshot.data);
-            return AnnotatedRegion(
-              value: SystemUiOverlayStyle(
-                  statusBarIconBrightness: Brightness.dark,
-                  statusBarColor: background),
-              child: AnimatedSplashScreen(
-                animationDuration: Duration(seconds: 1),
-                splash: 'assets/icons/iconRevert.png',
-                backgroundColor: backgroundDark,
-                nextScreen: snapshot.data != null &&
-                        snapshot.data!.emailVerified == true
-                    ? HomeView()
-                    : LoginView(),
-                splashIconSize: 334,
-                splashTransition: SplashTransition.fadeTransition,
-                pageTransitionType: PageTransitionType.leftToRight,
-              ),
-            );
-          }
-          return LoadingView();
-        });
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamBuilder<User?>(
+//         stream: authC.streamAuthStatus,
+//         builder: (context, snapshot) {
+//           if (snapshot.connectionState == ConnectionState.active) {
+//             print(snapshot.data);
+//             return AnnotatedRegion(
+//               value: SystemUiOverlayStyle(
+//                   statusBarIconBrightness: Brightness.dark,
+//                   statusBarColor: background),
+//               child: AnimatedSplashScreen(
+//                 animationDuration: Duration(seconds: 1),
+//                 splash: 'assets/icons/iconRevert.png',
+//                 backgroundColor: backgroundDark,
+//                 nextScreen: snapshot.data != null &&
+//                         snapshot.data!.emailVerified == true
+//                     ? HomeView()
+//                     : LoginView(),
+//                 splashIconSize: 334,
+//                 splashTransition: SplashTransition.fadeTransition,
+//                 pageTransitionType: PageTransitionType.leftToRight,
+//               ),
+//             );
+//           }
+//           return LoadingView();
+//         });
+//   }
+// }
