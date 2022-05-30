@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:project_monetin/app/modules/updatehutang/views/updatehutang_view.dart';
 import 'package:project_monetin/app/theme/theme.dart';
 
 import '../controllers/hutang_controller.dart';
@@ -88,7 +89,13 @@ class HutangView extends GetView<HutangController> {
                                             child: Material(
                                               color: Colors.transparent,
                                               child: IconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Get.to(() =>
+                                                          (UpdatehutangView()),
+                                                      arguments:
+                                                          listAllDocs[index]
+                                                              .id);
+                                                },
                                                 icon: Icon(
                                                   Icons.edit,
                                                   color: Colors.white,
@@ -103,7 +110,9 @@ class HutangView extends GetView<HutangController> {
                                             child: Material(
                                               color: Colors.transparent,
                                               child: IconButton(
-                                                onPressed: () {},
+                                                onPressed: () =>
+                                                controller.deleteHutang(
+                                                        listAllDocs[index].id),
                                                 icon: Icon(
                                                   Icons.delete,
                                                   color: Colors.white,

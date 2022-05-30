@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:project_monetin/app/modules/updatepengeluaran/views/updatepengeluaran_view.dart';
 import 'package:get/get.dart';
 import 'package:project_monetin/app/theme/theme.dart';
 
@@ -92,7 +93,13 @@ class PengeluaranView extends GetView<PengeluaranController> {
                                               child: Material(
                                                 color: Colors.transparent,
                                                 child: IconButton(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    Get.to(() =>
+                                                          (UpdatepengeluaranView()),
+                                                      arguments:
+                                                          listAllDocs[index]
+                                                              .id);
+                                                  },
                                                   icon: Icon(
                                                     Icons.edit,
                                                     color: Colors.white,
@@ -107,7 +114,10 @@ class PengeluaranView extends GetView<PengeluaranController> {
                                               child: Material(
                                                 color: Colors.transparent,
                                                 child: IconButton(
-                                                  onPressed: () {},
+                                                  onPressed: () =>
+                                                    controller.deletePengeluaran(
+                                                        listAllDocs[index].id),
+
                                                   icon: Icon(
                                                     Icons.delete,
                                                     color: Colors.white,
