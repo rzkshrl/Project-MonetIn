@@ -20,6 +20,11 @@ class BerandaController extends GetxController {
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  Stream<QuerySnapshot<Object?>> streamDataPemasukan() {
+    CollectionReference pemasukan = firestore.collection("pemasukan");
+    return pemasukan.snapshots();
+  }
+
   void tambahPemasukan(
       String namaPem, String jumlahPem, String hargaPem) async {
     CollectionReference pemasukan = firestore.collection("pemasukan");

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
@@ -632,381 +633,390 @@ class BerandaView extends GetView<BerandaController> {
   Widget build(BuildContext context) {
     return GestureDetector(
         child: Scaffold(
-      floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
-        backgroundColor: primaryBrownRed,
-        spacing: 10,
-        //floatingactionbutton
-        children: [
-          SpeedDialChild(
-              child: Icon(
-                CustomIcons.attach_money,
-                color: Colors.white,
-              ),
-              backgroundColor: primaryBrown,
-              label: 'Pemasukan',
-              onTap: () {
-                showPemasukanDialog(context);
-              }),
-          SpeedDialChild(
-              child: Icon(
-                CustomIcons.money_off,
-                color: Colors.white,
-              ),
-              backgroundColor: primaryPurple,
-              label: 'Pengeluaran',
-              onTap: () {
-                showPengeluaranDialog(context);
-              }),
-          SpeedDialChild(
-              child: Icon(
-                CustomIcons.money,
-                color: Colors.white,
-              ),
-              backgroundColor: primaryGreen,
-              label: 'Hutang',
-              onTap: () {
-                showHutangDialog(context);
-              })
-        ],
-      ),
-      backgroundColor: background,
-      body: Stack(
-        children: [
-          //title
-          Positioned(
-            top: -10,
-            left: 20,
-            child: Text(
-              'Beranda',
-              style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 63,
-                  fontWeight: FontWeight.bold,
-                  color: primaryBrown.withOpacity(0.20)),
+            floatingActionButton: SpeedDial(
+              animatedIcon: AnimatedIcons.menu_close,
+              backgroundColor: primaryBrownRed,
+              spacing: 10,
+              //floatingactionbutton
+              children: [
+                SpeedDialChild(
+                    child: Icon(
+                      CustomIcons.attach_money,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: primaryBrown,
+                    label: 'Pemasukan',
+                    onTap: () {
+                      showPemasukanDialog(context);
+                    }),
+                SpeedDialChild(
+                    child: Icon(
+                      CustomIcons.money_off,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: primaryPurple,
+                    label: 'Pengeluaran',
+                    onTap: () {
+                      showPengeluaranDialog(context);
+                    }),
+                SpeedDialChild(
+                    child: Icon(
+                      CustomIcons.money,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: primaryGreen,
+                    label: 'Hutang',
+                    onTap: () {
+                      showHutangDialog(context);
+                    })
+              ],
             ),
-          ),
-          SingleChildScrollView(
-            child: Column(children: [
-              SizedBox(
-                height: 70,
-              ),
-              //Pemasukan
-              Container(
-                height: 170,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.transparent,
-                child: new Stack(
-                  children: [
-                    Positioned(
-                      top: 0,
-                      bottom: 0,
-                      left: 40,
-                      right: 40,
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: 170,
-                            width: 344,
-                            decoration: BoxDecoration(
-                              color: primaryBrown,
-                              borderRadius: BorderRadius.circular(25),
+            backgroundColor: background,
+            body: StreamBuilder<QuerySnapshot<Object?>>(
+                stream: controller.streamDataPemasukan(),
+                builder: (
+                  context,
+                  snapshot,
+                ) {
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    var listAllDocs = snapshot.data!.docs;
+                    // sum += double.parse(listAllDocs['jumlah']);
+                    return Stack(
+                      children: [
+                        //title
+                        Positioned(
+                          top: -10,
+                          left: 20,
+                          child: Text(
+                            'Beranda',
+                            style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 63,
+                                fontWeight: FontWeight.bold,
+                                color: primaryBrown.withOpacity(0.20)),
+                          ),
+                        ),
+                        SingleChildScrollView(
+                          child: Column(children: [
+                            SizedBox(
+                              height: 70,
                             ),
-                          ),
-                          Positioned(
-                              top: 13,
-                              left: 270,
-                              child: ClipOval(
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: IconButton(
-                                    onPressed: () =>
-                                        Get.to(() => PemasukanView()),
-                                    icon: Icon(
-                                      Icons.more_vert_rounded,
-                                      color: Colors.white,
+                            //Pemasukan
+                            Container(
+                              height: 170,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.transparent,
+                              child: new Stack(
+                                children: [
+                                  Positioned(
+                                    top: 0,
+                                    bottom: 0,
+                                    left: 40,
+                                    right: 40,
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 170,
+                                          width: 344,
+                                          decoration: BoxDecoration(
+                                            color: primaryBrown,
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                          ),
+                                        ),
+                                        Positioned(
+                                            top: 13,
+                                            left: 270,
+                                            child: ClipOval(
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: IconButton(
+                                                  onPressed: () => Get.to(
+                                                      () => PemasukanView()),
+                                                  icon: Icon(
+                                                    Icons.more_vert_rounded,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            )),
+                                        Positioned(
+                                          top: 25,
+                                          left: 25,
+                                          child: Stack(children: [
+                                            Text(
+                                              'Transaksi Masuk',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              '\n\nBulan ini :\n\n       Stok\n       Total',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            )
+                                          ]),
+                                        ),
+                                        Positioned(
+                                          top: 95,
+                                          left: 210,
+                                          right: 0,
+                                          child: Stack(children: [
+                                            Text(
+                                              'QTY:',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            // Positioned(
+                                            //     left: 20,
+                                            //     right: 0,
+                                            //     child: Text(
+                                            //         '${(listAllDocs as Map<String, dynamic>)["jumlah"]}')),
+                                            Text('\nRp.',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                                textAlign: TextAlign.left),
+                                            Positioned(
+                                                top: 20,
+                                                left: 20,
+                                                right: 0,
+                                                child: Text(
+                                                  totalmasuk,
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                )),
+                                          ]),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                              )),
-                          Positioned(
-                            top: 25,
-                            left: 25,
-                            child: Stack(children: [
-                              Text(
-                                'Transaksi Masuk',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                ],
                               ),
-                              Text(
-                                '\n\nBulan ini :\n\n       Stok\n       Total',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              )
-                            ]),
-                          ),
-                          Positioned(
-                            top: 95,
-                            left: 210,
-                            right: 0,
-                            child: Stack(children: [
-                              Text(
-                                'QTY:',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              Positioned(
-                                  left: 20,
-                                  right: 0,
-                                  child: Text(
-                                    qtymasuk,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  )),
-                              Text('\nRp.',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  textAlign: TextAlign.left),
-                              Positioned(
-                                  top: 20,
-                                  left: 20,
-                                  right: 0,
-                                  child: Text(
-                                    totalmasuk,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  )),
-                            ]),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              //Pengeluaran
-              Container(
-                height: 170,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.transparent,
-                child: new Stack(
-                  fit: StackFit.passthrough,
-                  clipBehavior: Clip.hardEdge,
-                  children: [
-                    Positioned(
-                      top: 0,
-                      bottom: 0,
-                      left: 40,
-                      right: 40,
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: 170,
-                            width: 344,
-                            decoration: BoxDecoration(
-                              color: primaryPurple,
-                              borderRadius: BorderRadius.circular(25),
                             ),
-                          ),
-                          Positioned(
-                              top: 13,
-                              left: 270,
-                              child: ClipOval(
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: IconButton(
-                                    onPressed: () =>
-                                        Get.to(() => PengeluaranView()),
-                                    icon: Icon(
-                                      Icons.more_vert_rounded,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              )),
-                          Positioned(
-                            top: 25,
-                            left: 25,
-                            child: Stack(children: [
-                              Text(
-                                'Transaksi Keluar',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                '\n\nBulan ini :\n\n       Stok\n       Total',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              )
-                            ]),
-                          ),
-                          Positioned(
-                            top: 95,
-                            left: 210,
-                            right: 0,
-                            child: Stack(children: [
-                              Text(
-                                'QTY:',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              Positioned(
-                                  left: 20,
-                                  right: 0,
-                                  child: Text(
-                                    qtykeluar,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  )),
-                              Text('\nRp.',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  textAlign: TextAlign.left),
-                              Positioned(
-                                  top: 20,
-                                  left: 20,
-                                  right: 0,
-                                  child: Text(
-                                    totalkeluar,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  )),
-                            ]),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              //Hutang
-              Container(
-                height: 105,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.transparent,
-                child: new Stack(
-                  children: [
-                    Positioned(
-                      top: 0,
-                      bottom: 0,
-                      left: 40,
-                      right: 40,
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: 116,
-                            width: 344,
-                            decoration: BoxDecoration(
-                              color: primaryGreen,
-                              borderRadius: BorderRadius.circular(25),
+                            SizedBox(
+                              height: 15,
                             ),
-                          ),
-                          Positioned(
-                              top: 13,
-                              left: 270,
-                              child: ClipOval(
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: IconButton(
-                                    onPressed: () => Get.to(() => HutangView()),
-                                    icon: Icon(
-                                      Icons.more_vert_rounded,
-                                      color: Colors.white,
+                            //Pengeluaran
+                            Container(
+                              height: 170,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.transparent,
+                              child: new Stack(
+                                fit: StackFit.passthrough,
+                                clipBehavior: Clip.hardEdge,
+                                children: [
+                                  Positioned(
+                                    top: 0,
+                                    bottom: 0,
+                                    left: 40,
+                                    right: 40,
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 170,
+                                          width: 344,
+                                          decoration: BoxDecoration(
+                                            color: primaryPurple,
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                          ),
+                                        ),
+                                        Positioned(
+                                            top: 13,
+                                            left: 270,
+                                            child: ClipOval(
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: IconButton(
+                                                  onPressed: () => Get.to(
+                                                      () => PengeluaranView()),
+                                                  icon: Icon(
+                                                    Icons.more_vert_rounded,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            )),
+                                        Positioned(
+                                          top: 25,
+                                          left: 25,
+                                          child: Stack(children: [
+                                            Text(
+                                              'Transaksi Keluar',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              '\n\nBulan ini :\n\n       Stok\n       Total',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            )
+                                          ]),
+                                        ),
+                                        Positioned(
+                                          top: 95,
+                                          left: 210,
+                                          right: 0,
+                                          child: Stack(children: [
+                                            Text(
+                                              'QTY:',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            Positioned(
+                                                left: 20,
+                                                right: 0,
+                                                child: Text(
+                                                  qtykeluar,
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                )),
+                                            Text('\nRp.',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                                textAlign: TextAlign.left),
+                                            Positioned(
+                                                top: 20,
+                                                left: 20,
+                                                right: 0,
+                                                child: Text(
+                                                  totalkeluar,
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                )),
+                                          ]),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                              )),
-                          Positioned(
-                            top: 25,
-                            left: 25,
-                            child: Stack(children: [
-                              Text(
-                                'Hutang',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                                ],
                               ),
-                              Text(
-                                '\n\nTotal',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              )
-                            ]),
-                          ),
-                          Positioned(
-                            top: 45,
-                            left: 210,
-                            right: 0,
-                            child: Stack(children: [
-                              Text('\nRp.',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  textAlign: TextAlign.left),
-                              Positioned(
-                                  top: 20,
-                                  left: 30,
-                                  right: 0,
-                                  child: Text(
-                                    totalkeluar,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400,
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            //Hutang
+                            Container(
+                              height: 105,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.transparent,
+                              child: new Stack(
+                                children: [
+                                  Positioned(
+                                    top: 0,
+                                    bottom: 0,
+                                    left: 40,
+                                    right: 40,
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 116,
+                                          width: 344,
+                                          decoration: BoxDecoration(
+                                            color: primaryGreen,
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                          ),
+                                        ),
+                                        Positioned(
+                                            top: 13,
+                                            left: 270,
+                                            child: ClipOval(
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: IconButton(
+                                                  onPressed: () => Get.to(
+                                                      () => HutangView()),
+                                                  icon: Icon(
+                                                    Icons.more_vert_rounded,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            )),
+                                        Positioned(
+                                          top: 25,
+                                          left: 25,
+                                          child: Stack(children: [
+                                            Text(
+                                              'Hutang',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              '\n\nTotal',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            )
+                                          ]),
+                                        ),
+                                        Positioned(
+                                          top: 45,
+                                          left: 210,
+                                          right: 0,
+                                          child: Stack(children: [
+                                            Text('\nRp.',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                                textAlign: TextAlign.left),
+                                            Positioned(
+                                                top: 20,
+                                                left: 30,
+                                                right: 0,
+                                                child: Text(
+                                                  totalkeluar,
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                  textAlign: TextAlign.left,
+                                                )),
+                                          ]),
+                                        ),
+                                      ],
                                     ),
-                                    textAlign: TextAlign.left,
-                                  )),
-                            ]),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ]),
-          )
-        ],
-      ),
-    ));
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ]),
+                        )
+                      ],
+                    );
+                  }
+                  return Center(child: CircularProgressIndicator());
+                })));
   }
 }
