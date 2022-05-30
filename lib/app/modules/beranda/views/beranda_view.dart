@@ -52,14 +52,7 @@ class BerandaView extends GetView<BerandaController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 0),
                               child: TextFormField(
-                                onTap: () {
-                                  FocusScopeNode currentFocus =
-                                      FocusScope.of(context);
-
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                },
+                                onTap: () {},
                                 controller: controller.namamasukC,
                                 validator: (value) {
                                   return value!.isNotEmpty
@@ -110,14 +103,8 @@ class BerandaView extends GetView<BerandaController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 0),
                               child: TextFormField(
-                                onTap: () {
-                                  FocusScopeNode currentFocus =
-                                      FocusScope.of(context);
-
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                },
+                                keyboardType: TextInputType.number,
+                                onTap: () {},
                                 controller: controller.jumlahmasukC,
                                 validator: (value) {
                                   return value!.isNotEmpty
@@ -168,14 +155,8 @@ class BerandaView extends GetView<BerandaController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 0),
                               child: TextFormField(
-                                onTap: () {
-                                  FocusScopeNode currentFocus =
-                                      FocusScope.of(context);
-
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                },
+                                keyboardType: TextInputType.number,
+                                onTap: () {},
                                 controller: controller.hargamasukC,
                                 validator: (value) {
                                   return value!.isNotEmpty
@@ -277,14 +258,7 @@ class BerandaView extends GetView<BerandaController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 0),
                               child: TextFormField(
-                                onTap: () {
-                                  FocusScopeNode currentFocus =
-                                      FocusScope.of(context);
-
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                },
+                                onTap: () {},
                                 controller: controller.namakeluarC,
                                 validator: (value) {
                                   return value!.isNotEmpty
@@ -334,14 +308,8 @@ class BerandaView extends GetView<BerandaController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 0),
                               child: TextFormField(
-                                onTap: () {
-                                  FocusScopeNode currentFocus =
-                                      FocusScope.of(context);
-
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                },
+                                keyboardType: TextInputType.number,
+                                onTap: () {},
                                 controller: controller.jumlahkeluarC,
                                 validator: (value) {
                                   return value!.isNotEmpty
@@ -391,14 +359,8 @@ class BerandaView extends GetView<BerandaController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 0),
                               child: TextFormField(
-                                onTap: () {
-                                  FocusScopeNode currentFocus =
-                                      FocusScope.of(context);
-
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                },
+                                keyboardType: TextInputType.number,
+                                onTap: () {},
                                 controller: controller.hargakeluarC,
                                 validator: (value) {
                                   return value!.isNotEmpty
@@ -498,14 +460,7 @@ class BerandaView extends GetView<BerandaController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 0),
                               child: TextFormField(
-                                onTap: () {
-                                  FocusScopeNode currentFocus =
-                                      FocusScope.of(context);
-
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                },
+                                onTap: () {},
                                 controller: controller.namaHutangC,
                                 validator: (value) {
                                   return value!.isNotEmpty
@@ -555,14 +510,8 @@ class BerandaView extends GetView<BerandaController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 0),
                               child: TextFormField(
-                                onTap: () {
-                                  FocusScopeNode currentFocus =
-                                      FocusScope.of(context);
-
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                },
+                                keyboardType: TextInputType.number,
+                                onTap: () {},
                                 controller: controller.totalHutangC,
                                 validator: (value) {
                                   return value!.isNotEmpty
@@ -612,14 +561,7 @@ class BerandaView extends GetView<BerandaController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 0),
                               child: TextFormField(
-                                onTap: () {
-                                  FocusScopeNode currentFocus =
-                                      FocusScope.of(context);
-
-                                  if (!currentFocus.hasPrimaryFocus) {
-                                    currentFocus.unfocus();
-                                  }
-                                },
+                                onTap: () {},
                                 controller: controller.ketHutangC,
                                 style:
                                     regular16pt.copyWith(color: Colors.white),
@@ -778,13 +720,8 @@ class BerandaView extends GetView<BerandaController> {
                                 child: Material(
                                   color: Colors.transparent,
                                   child: IconButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PemasukanView()));
-                                    },
+                                    onPressed: () =>
+                                        Get.to(() => PemasukanView()),
                                     icon: Icon(
                                       Icons.more_vert_rounded,
                                       color: Colors.white,
@@ -896,13 +833,8 @@ class BerandaView extends GetView<BerandaController> {
                                 child: Material(
                                   color: Colors.transparent,
                                   child: IconButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PengeluaranView()));
-                                    },
+                                    onPressed: () =>
+                                        Get.to(() => PengeluaranView()),
                                     icon: Icon(
                                       Icons.more_vert_rounded,
                                       color: Colors.white,
@@ -1012,13 +944,7 @@ class BerandaView extends GetView<BerandaController> {
                                 child: Material(
                                   color: Colors.transparent,
                                   child: IconButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  HutangView()));
-                                    },
+                                    onPressed: () => Get.to(() => HutangView()),
                                     icon: Icon(
                                       Icons.more_vert_rounded,
                                       color: Colors.white,

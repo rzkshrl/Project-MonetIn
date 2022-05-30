@@ -5,12 +5,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:project_monetin/app/modules/updatepemasukan/views/updatepemasukan_view.dart';
 import 'package:project_monetin/app/theme/theme.dart';
 
 import '../controllers/pemasukan_controller.dart';
 
 class PemasukanView extends GetView<PemasukanController> {
   final PemasukanController controller = Get.put(PemasukanController());
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background,
@@ -81,6 +84,7 @@ class PemasukanView extends GetView<PemasukanController> {
                                               BorderRadius.circular(25),
                                         ),
                                       ),
+                                      //edit data icon
                                       Positioned(
                                           top: 13,
                                           left: 240,
@@ -88,7 +92,14 @@ class PemasukanView extends GetView<PemasukanController> {
                                             child: Material(
                                               color: Colors.transparent,
                                               child: IconButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Get.to(
+                                                      () =>
+                                                          (UpdatepemasukanView()),
+                                                      arguments:
+                                                          listAllDocs[index]
+                                                              .id);
+                                                },
                                                 icon: Icon(
                                                   Icons.edit,
                                                   color: Colors.white,
@@ -96,6 +107,7 @@ class PemasukanView extends GetView<PemasukanController> {
                                               ),
                                             ),
                                           )),
+                                      //delete data icon
                                       Positioned(
                                           top: 13,
                                           left: 280,
@@ -103,7 +115,9 @@ class PemasukanView extends GetView<PemasukanController> {
                                             child: Material(
                                               color: Colors.transparent,
                                               child: IconButton(
-                                                onPressed: () {},
+                                                onPressed: () =>
+                                                    controller.deletePemasukan(
+                                                        listAllDocs[index].id),
                                                 icon: Icon(
                                                   Icons.delete,
                                                   color: Colors.white,

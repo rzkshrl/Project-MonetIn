@@ -18,6 +18,12 @@ import '../modules/reset_password/bindings/reset_password_binding.dart';
 import '../modules/reset_password/views/reset_password_view.dart';
 import '../modules/setelan/bindings/setelan_binding.dart';
 import '../modules/setelan/views/setelan_view.dart';
+import '../modules/updatehutang/bindings/updatehutang_binding.dart';
+import '../modules/updatehutang/views/updatehutang_view.dart';
+import '../modules/updatepemasukan/bindings/updatepemasukan_binding.dart';
+import '../modules/updatepemasukan/views/updatepemasukan_view.dart';
+import '../modules/updatepengeluaran/bindings/updatepengeluaran_binding.dart';
+import '../modules/updatepengeluaran/views/updatepengeluaran_view.dart';
 
 part 'app_routes.dart';
 
@@ -71,6 +77,21 @@ class AppPages {
       name: _Paths.HUTANG,
       page: () => HutangView(),
       binding: HutangBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATEPEMASUKAN,
+      page: () => UpdatepemasukanView(),
+      binding: UpdatepemasukanBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATEPENGELUARAN,
+      page: () => UpdatepengeluaranView(),
+      binding: UpdatepengeluaranBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATEHUTANG,
+      page: () => UpdatehutangView(),
+      binding: UpdatehutangBinding(),
     ),
   ];
 }

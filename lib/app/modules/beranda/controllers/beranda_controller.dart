@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:project_monetin/app/theme/theme.dart';
 
 class BerandaController extends GetxController {
   late TextEditingController namamasukC;
@@ -16,6 +15,9 @@ class BerandaController extends GetxController {
   late TextEditingController totalHutangC;
   late TextEditingController ketHutangC;
 
+  var qty = 0.obs;
+  var total = 0.obs;
+
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   void tambahPemasukan(
@@ -23,10 +25,12 @@ class BerandaController extends GetxController {
     CollectionReference pemasukan = firestore.collection("pemasukan");
 
     try {
+      String dateNow = DateTime.now().toIso8601String();
       await pemasukan.add({
         "nama": namaPem,
         "jumlah": jumlahPem,
         "harga": hargaPem,
+        "time": dateNow,
       });
 
       Get.defaultDialog(
@@ -36,7 +40,6 @@ class BerandaController extends GetxController {
           namamasukC.clear();
           jumlahmasukC.clear();
           hargamasukC.clear();
-          Get.back();
           Get.back();
         },
         textConfirm: "Okay",
@@ -55,10 +58,12 @@ class BerandaController extends GetxController {
     CollectionReference pengeluaran = firestore.collection("pengeluaran");
 
     try {
+      String dateNow = DateTime.now().toIso8601String();
       await pengeluaran.add({
         "nama": namaPeng,
         "jumlah": jumlahPeng,
         "harga": hargaPeng,
+        "time": dateNow,
       });
 
       Get.defaultDialog(
@@ -68,7 +73,6 @@ class BerandaController extends GetxController {
           namakeluarC.clear();
           jumlahkeluarC.clear();
           hargakeluarC.clear();
-          Get.back();
           Get.back();
         },
         textConfirm: "Okay",
@@ -86,10 +90,12 @@ class BerandaController extends GetxController {
     CollectionReference hutang = firestore.collection("hutang");
 
     try {
+      String dateNow = DateTime.now().toIso8601String();
       await hutang.add({
         "nama": namaHut,
         "total": jumlahHut,
         "keterangan": hargaHut,
+        "time": dateNow,
       });
 
       Get.defaultDialog(
@@ -99,7 +105,6 @@ class BerandaController extends GetxController {
           namaHutangC.clear();
           totalHutangC.clear();
           ketHutangC.clear();
-          Get.back();
           Get.back();
         },
         textConfirm: "Okay",

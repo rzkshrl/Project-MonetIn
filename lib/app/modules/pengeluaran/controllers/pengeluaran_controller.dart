@@ -6,6 +6,36 @@ class PengeluaranController extends GetxController {
 
   Stream<QuerySnapshot<Object?>> streamDataPengeluaran() {
     CollectionReference pengeluaran = firestore.collection("pengeluaran");
-    return pengeluaran.snapshots();
+    return pengeluaran.orderBy("time", descending: true).snapshots();
+  }
+  void deletePengeluaran(String docId) async {
+    DocumentReference docRef = firestore.collection("pengeluaran").doc(docId);
+
+    try {
+      Get.defaultDialog(
+        title: "Hapus Data",
+        middleText: "Apakah anda yakin ingin Menghapus Data?",
+        textConfirm: "Yes",
+        textCancel: "No",
+        onConfirm: () async {
+          docRef.delete();
+          Get.back();
+          Get.defaultDialog(
+            title: "Berhasil",
+            middleText: "Berhasil Menghapus Data",
+            textConfirm: "Okay",
+            onConfirm: () {
+              Get.back();
+            },
+          );
+        },
+      );
+    } catch (e) {
+      print(e);
+      Get.defaultDialog(
+        title: "Error",
+        middleText: "Tidak Berhasil Menghapus Data",
+      );
+    }
   }
 }
