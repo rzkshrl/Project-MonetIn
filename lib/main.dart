@@ -1,13 +1,10 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:get/get.dart';
 import 'package:project_monetin/app/controller/auth_controller.dart';
 import 'package:project_monetin/app/modules/home/views/home_view.dart';
-import 'package:project_monetin/app/modules/login/views/login_view.dart';
 import 'package:project_monetin/app/utils/loading.dart';
 import 'app/routes/app_pages.dart';
 import 'app/theme/app_themes.dart';
