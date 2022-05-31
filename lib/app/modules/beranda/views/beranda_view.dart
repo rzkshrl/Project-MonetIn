@@ -793,18 +793,20 @@ class BerandaView extends GetView<BerandaController> {
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                                 textAlign: TextAlign.left),
-                                            Positioned(
-                                                top: 20,
-                                                left: 20,
-                                                right: 0,
-                                                child: Text(
-                                                  totalmasuk,
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                )),
+                                            // Positioned(
+                                            //   left: 20,
+                                            //   right: 0,
+                                            //   child: StreamBuilder(
+                                            //       stream: FirebaseFirestore
+                                            //           .instance
+                                            //           .collection('pemasukan')
+                                            //           .snapshots(),
+                                            //       builder: (context, snapshot) {
+                                            //         if (!snapshot.hasData)
+                                            //           return Text('Loading Data..');
+                                            //         return Text(snapshot.data!.docs.map((DocumentSnapshot document)));
+                                            //       }),
+                                            // ),
                                           ]),
                                         ),
                                       ],
@@ -890,35 +892,40 @@ class BerandaView extends GetView<BerandaController> {
                                               ),
                                               textAlign: TextAlign.center,
                                             ),
-                                            Positioned(
-                                                left: 20,
-                                                right: 0,
-                                                child: Text(
-                                                  qtykeluar,
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                )),
+                                            // Positioned(
+                                            //   left: 20,
+                                            //   right: 0,
+                                            //   child: StreamBuilder(
+                                            //       stream: FirebaseFirestore
+                                            //           .instance
+                                            //           .collection('pemasukan')
+                                            //           .snapshots(),
+                                            //       builder: (context, snapshot) {
+                                            //         if (!snapshot.hasData)
+                                            //           return Text('Loading Data..');
+                                            //         return Text(snapshot.data!.docs.map((DocumentSnapshot document)));
+                                            //       }),
+                                            // ),
                                             Text('\nRp.',
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                                 textAlign: TextAlign.left),
-                                            Positioned(
-                                                top: 20,
-                                                left: 20,
-                                                right: 0,
-                                                child: Text(
-                                                  totalkeluar,
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                )),
+                                            // Positioned(
+                                            //   left: 20,
+                                            //   right: 0,
+                                            //   child: StreamBuilder(
+                                            //       stream: FirebaseFirestore
+                                            //           .instance
+                                            //           .collection('pemasukan')
+                                            //           .snapshots(),
+                                            //       builder: (context, snapshot) {
+                                            //         if (!snapshot.hasData)
+                                            //           return Text('Loading Data..');
+                                            //         return Text(snapshot.data!.docs.map((DocumentSnapshot document)));
+                                            //       }),
+                                            // ),
                                           ]),
                                         ),
                                       ],
@@ -1000,18 +1007,20 @@ class BerandaView extends GetView<BerandaController> {
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                                 textAlign: TextAlign.left),
-                                            Positioned(
-                                                top: 20,
-                                                left: 30,
-                                                right: 0,
-                                                child: Text(
-                                                  totalkeluar,
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                  textAlign: TextAlign.left,
-                                                )),
+                                            // Positioned(
+                                            //   left: 20,
+                                            //   right: 0,
+                                            //   child: StreamBuilder(
+                                            //       stream: FirebaseFirestore
+                                            //           .instance
+                                            //           .collection('pemasukan')
+                                            //           .snapshots(),
+                                            //       builder: (context, snapshot) {
+                                            //         if (!snapshot.hasData)
+                                            //           return Text('Loading Data..');
+                                            //         return Text(snapshot.data!.docs.map((DocumentSnapshot document)));
+                                            //       }),
+                                            // ),
                                           ]),
                                         ),
                                       ],

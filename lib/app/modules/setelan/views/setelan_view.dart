@@ -12,8 +12,21 @@ class SetelanView extends GetView<SetelanController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background,
-      body: Center(
-        child: Container(
+      body: Stack(children: [
+        Positioned(
+          top: -10,
+          left: 20,
+          child: Text(
+            'Setelan',
+            style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 63,
+                fontWeight: FontWeight.bold,
+                color: primaryBrown.withOpacity(0.20)),
+          ),
+        ),
+        Center(
+            child: Container(
           height: 56,
           width: 128,
           decoration: BoxDecoration(
@@ -25,8 +38,8 @@ class SetelanView extends GetView<SetelanController> {
               style: heading5.copyWith(color: colorLight),
             ),
           ),
-        ),
-      ),
+        )),
+      ]),
     );
   }
 }
