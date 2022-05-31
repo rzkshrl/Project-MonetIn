@@ -20,6 +20,7 @@ class HomeView extends StatelessWidget {
         ),
         child: Container(
           height: 70,
+          color: background,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

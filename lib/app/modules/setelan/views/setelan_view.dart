@@ -11,10 +11,7 @@ class SetelanView extends GetView<SetelanController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('SetelanView'),
-        centerTitle: true,
-      ),
+      backgroundColor: background,
       body: Center(
         child: Container(
           height: 56,

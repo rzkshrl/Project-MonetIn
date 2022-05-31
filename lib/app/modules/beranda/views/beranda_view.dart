@@ -774,10 +774,19 @@ class BerandaView extends GetView<BerandaController> {
                                               textAlign: TextAlign.center,
                                             ),
                                             // Positioned(
-                                            //     left: 20,
-                                            //     right: 0,
-                                            //     child: Text(
-                                            //         '${(listAllDocs as Map<String, dynamic>)["jumlah"]}')),
+                                            //   left: 20,
+                                            //   right: 0,
+                                            //   child: StreamBuilder(
+                                            //       stream: FirebaseFirestore
+                                            //           .instance
+                                            //           .collection('pemasukan')
+                                            //           .snapshots(),
+                                            //       builder: (context, snapshot) {
+                                            //         if (!snapshot.hasData)
+                                            //           return Text('Loading Data..');
+                                            //         return Text(snapshot.data!.docs.map((DocumentSnapshot document)));
+                                            //       }),
+                                            // ),
                                             Text('\nRp.',
                                                 style: TextStyle(
                                                   color: Colors.white,

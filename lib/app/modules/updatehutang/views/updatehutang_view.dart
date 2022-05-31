@@ -8,8 +8,7 @@ import '../../../theme/theme.dart';
 import '../controllers/updatehutang_controller.dart';
 
 class UpdatehutangView extends GetView<UpdatehutangController> {
-  final UpdatehutangController controller =
-      Get.put(UpdatehutangController());
+  final UpdatehutangController controller = Get.put(UpdatehutangController());
   final GlobalKey<FormState> _namaItemHutangKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _jumlahItemHutangKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _hargaItemHutangKey = GlobalKey<FormState>();
@@ -21,8 +20,8 @@ class UpdatehutangView extends GetView<UpdatehutangController> {
           if (snapshot.connectionState == ConnectionState.done) {
             var data = snapshot.data!.data() as Map<String, dynamic>;
             controller.namahutC.text = data['nama'];
-            controller.jumlahhutC.text = data['jumlah'];
-            controller.hargahutC.text = data['harga'];
+            controller.jumlahhutC.text = data['total'];
+            controller.hargahutC.text = data['keterangan'];
             return AlertDialog(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25),
