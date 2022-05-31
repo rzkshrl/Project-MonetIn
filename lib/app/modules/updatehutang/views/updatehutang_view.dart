@@ -89,7 +89,7 @@ class UpdatehutangView extends GetView<UpdatehutangController> {
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: Text(
-                            'QTY',
+                            'Total Hutang',
                             style: heading14pt.copyWith(color: Colors.white),
                           ),
                         ),
@@ -131,7 +131,7 @@ class UpdatehutangView extends GetView<UpdatehutangController> {
                                   border: UnderlineInputBorder(
                                     borderSide: BorderSide(color: colorLight),
                                   ),
-                                  hintText: 'Jumlah Item',
+                                  hintText: 'Total Hutang',
                                   hintStyle:
                                       regular16pt.copyWith(color: Colors.white),
                                 ),
@@ -145,7 +145,7 @@ class UpdatehutangView extends GetView<UpdatehutangController> {
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: Text(
-                            'Harga',
+                            'Keterangan Hutang',
                             style: heading14pt.copyWith(color: Colors.white),
                           ),
                         ),
@@ -157,10 +157,6 @@ class UpdatehutangView extends GetView<UpdatehutangController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 0),
                               child: TextFormField(
-                                inputFormatters: <TextInputFormatter>[
-                                  FilteringTextInputFormatter.allow(
-                                      RegExp(r'[0-9]')),
-                                ],
                                 textInputAction: TextInputAction.done,
                                 onTap: () {},
                                 controller: controller.hargahutC,
@@ -187,7 +183,7 @@ class UpdatehutangView extends GetView<UpdatehutangController> {
                                   border: UnderlineInputBorder(
                                     borderSide: BorderSide(color: colorLight),
                                   ),
-                                  hintText: 'Isi Harga Item',
+                                  hintText: 'Isi Keterangan Hutang',
                                   hintStyle:
                                       regular16pt.copyWith(color: Colors.white),
                                 ),
