@@ -25,6 +25,11 @@ class BerandaController extends GetxController {
     return pemasukan.snapshots();
   }
 
+  Future<DocumentSnapshot<Object?>> getData(String docID) async {
+    DocumentReference docRef = firestore.collection("pemasukan").doc(docID);
+    return docRef.get();
+  }
+
   void tambahPemasukan(
       String namaPem, String jumlahPem, String hargaPem) async {
     CollectionReference pemasukan = firestore.collection("pemasukan");
