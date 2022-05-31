@@ -29,7 +29,7 @@ class RegisterView extends GetView<RegisterController> {
                   height: 20,
                 ),
                 Image.asset(
-                  'assets/images/icon.png',
+                  'assets/icons/icon.png',
                   width: 180,
                   height: 180,
                 )
